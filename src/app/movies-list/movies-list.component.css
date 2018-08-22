@@ -1,0 +1,58 @@
+*{
+    font-family: 'Open Sans Condensed', sans-serif;
+    box-sizing: border-box;
+}
+
+.movie-info {
+    position: relative;
+    min-height: 500px;
+}
+
+.movie-btn {
+    margin: 20px 0;
+    padding: 5px 20px;
+    text-align: center;
+}
+
+.img-a{
+    background-image: url("../../assets/img/favorite.png");
+    width: 70px;
+    height: 17px;
+    margin: 10px 0;
+}
+
+.block{ 
+    margin: 50px auto;
+    width: 100%;
+}
+
+.btn-loadmore {
+    margin: 20px auto;
+}
+
+.movie-description {
+    min-height: 100px;
+}
+
+.singleMovie {
+    float: left;
+    margin: 20px auto;
+    box-shadow: 0px 5px 15px 0px rgba(0,0,0,0.75);
+    transition: all .5s;
+    background-color: white;
+    position: relative;
+    width: 30%;
+    padding: 20px;
+}
+
+.singleMovie:hover {
+    cursor: pointer;
+    transform: scale(1.04);
+    z-index: 9999;
+}
+
+.image {
+    width: 100%;
+    height: 400px;
+    padding: 0;
+}

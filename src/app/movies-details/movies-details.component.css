@@ -1,0 +1,92 @@
+.arrow-box {
+    position: absolute;
+    top: 50px;
+    left: 50px;
+    z-index: 9999;
+    position: fixed;
+}
+
+.goBack {
+    font-size: 12px;
+    text-align: center;
+    font-weight: bold;
+}
+
+.my-arrow {
+    font-size: 60px;
+    color: orangered;
+    transition: all .4s;
+}
+
+.my-arrow:hover {
+    cursor: pointer;
+    color: crimson;
+}
+
+.container {
+    margin-top: 50px;
+    position: relative;
+    font-family: 'Open Sans Condensed', sans-serif;
+}
+
+.space {
+    background-position: center; 
+    background-repeat: no-repeat; 
+    background-size: cover; 
+    width: 100%;
+    opacity: .1;
+    z-index: -1;
+    position: absolute;
+}
+
+.title {
+    text-align: center;
+    font-style: italic;
+    color: #0042B2;
+}
+
+.vote-average {
+    position: absolute;
+    top: 20px;
+    right: 70px;
+    color: orangered;
+    font-weight: bold;
+    font-style:italic;
+    font-size: 14px;
+}
+
+.release-date {
+    position: absolute;
+    top: 20px;
+    left: 70px;
+    color: orangered;
+    font-weight: bold;
+    font-style:italic;
+    font-size: 14px;
+}
+
+.overview {
+    text-align: center;
+    margin-top: 50px;
+    letter-spacing: 1px;
+}
+
+.media {
+    position: relative;
+    margin-top : 50px;
+}
+
+.poster {
+    position: absolute;
+    top: 30px;
+    width: 300px;
+    left: 110px;
+    box-shadow: 0px 5px 25px 0px rgba(0,0,0,0.75);
+}
+
+.trailer {
+    position: absolute;
+    right: 70px;
+    top: 250px;
+    box-shadow: 0px 5px 25px 0px rgba(0,0,0,0.75);
+}
