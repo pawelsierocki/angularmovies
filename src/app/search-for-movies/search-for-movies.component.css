@@ -1,12 +1,27 @@
+*{
+    font-family: 'Open Sans Condensed', sans-serif;
+}
+
 .inputTitle {
+    margin-top: 30px;
     text-align: center;
     position: relative;
+
   }
 
-  .title {
-      padding: 6px 12px;
-      font-size: 12px;
-      position: relative;
-      color: #0042B2;
-      border: .3px solid #0042B2;
-  }
+.title {
+    padding: 6px 12px;
+    font-size: 12px;
+    position: relative;
+    color: #0042B2;
+    border: .3px solid #0042B2;
+    width: 30%;
+}
+
+.movie_info {
+    text-align: center;
+}
+
+.btn-filter {
+    margin-top: 30px;
+}

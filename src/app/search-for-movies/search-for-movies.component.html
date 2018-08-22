@@ -1,3 +1,19 @@
-<div class="inputTitle">
-  <input class="title" type="text" placeholder="Search a movie by title">
+<div class="inputTitle container">
+  <input class="title" type="text" placeholder="Search for a movie by title">
+  <p>or...</p>
+</div>
+
+<div class="movie_info container">
+  <label for="form-control">Original language</label>
+    <select class="form-control language">
+      <option value="en">English</option>
+      <option value="es">Espaniol</option>
+      <option value="ja">Japan</option>
+    </select>
+   <label for="ifadult">If adult</label>
+      <select class="form-control ifadult">
+        <option value="true">Adult</option>
+        <option value="false">Children</option>
+    </select>
+  <button type="button" class="btn btn-success btn-filter">Search for movies</button>
 </div>
