@@ -3,7 +3,7 @@
 }
 
 .inputTitle {
-    margin-top: 30px;
+    margin-top: 50px;
     text-align: center;
     position: relative;
 
@@ -24,4 +24,31 @@
 
 .btn-filter {
     margin-top: 30px;
+}
+
+#form-title {
+    display: block;
+    margin : 0 auto;
+    width: 100%;
+}
+
+label {
+    margin: 10px 0;
+}
+
+.movie {
+    border: .5px solid #0042B2;
+    width: 30%;
+    margin: 0 auto;
+    margin-top: 1px;
+    transition: all .4s;
+}
+
+.movie:hover {
+    cursor: pointer;
+    background-color: orangered;
+}
+.image {
+    margin-top: 5px;
+    width: 50px;
 }

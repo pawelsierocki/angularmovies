@@ -1,10 +1,22 @@
 <div class="inputTitle container">
-  <input class="title" type="text" placeholder="Search for a movie by title">
+  <input type="text" placeholder="Search for movie.." id="search" class="title" (keyup)="onKey($event)">
+  <div class="dropdown-content">
+    <div class="movie" *ngFor="let movie of moviesList" [routerLink]="['/movies', movie.id, movie.original_language]">
+      <img class="image" 
+          alt="{{movie.original_title}}"
+          src="{{movie.poster_path != null ? imgPath+movie.poster_path : '../../assets/img/default.png'}}">
+      <p class="search-title">{{movie.original_title}}</p>
+    </div>   
+
+  </div>        
+                                                        
   <p>or...</p>
 </div>
 
 <div class="movie_info container">
-  <label for="form-control">Original language</label>
+    <label for="form-title">Title</label>
+    <input id="form-title" type="text">
+    <label for="form-control">Original language</label>
     <select class="form-control language">
       <option value="en">English</option>
       <option value="es">Espaniol</option>
