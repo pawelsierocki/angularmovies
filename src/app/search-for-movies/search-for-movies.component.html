@@ -1,5 +1,5 @@
 <div class="inputTitle container">
-  <input type="text" placeholder="Search for movie.." id="search" class="title" (keyup)="onKey($event)">
+  <input type="text" placeholder="Search for movie by title" id="search" class="title" (keyup)="onKey($event)">
   <div class="dropdown-content">
     <div class="movie" *ngFor="let movie of moviesList" [routerLink]="['/movies', movie.id, movie.original_language]">
       <img class="image" 
@@ -15,17 +15,39 @@
 
 <div class="movie_info container">
     <label for="form-title">Title</label>
-    <input id="form-title" type="text">
+    <input id="form-title" type="text" [(ngModel)]="selectedTitle">
     <label for="form-control">Original language</label>
-    <select class="form-control language">
+    <select class="form-control language" [(ngModel)]="selectedLanguage">
       <option value="en">English</option>
       <option value="es">Espaniol</option>
       <option value="ja">Japan</option>
     </select>
    <label for="ifadult">If adult</label>
-      <select class="form-control ifadult">
+      <select class="form-control ifadult" [(ngModel)]="selectedAdult">
         <option value="true">Adult</option>
         <option value="false">Children</option>
     </select>
-  <button type="button" class="btn btn-success btn-filter">Search for movies</button>
+  <button type="button" class="btn btn-success btn-filter" (click)="getFilteredMovies()">Search for movies</button>
+</div>
+
+<div class="block row">
+  <div class="filteredMovies" *ngFor="let movie of moviesSearch">
+    <div class="movie-info-main">
+      <img class="image-big" 
+                alt="{{movie.original_title}}"
+                src="{{movie.poster_path != null ? imgPath+movie.poster_path : '../../assets/img/default.png'}}">
+      <h2 class="title-big">{{movie.original_title}}</h2>
+    </div>
+    <div class="movie-stars">
+      <img class="img-a">
+  </div>
+    <div class="movie-description">{{movie.overview.length < 200 ? movie.overview : movie.overview.slice(1,200)+'...'}}</div>
+    <div class="movie-btn">
+      <button class="btn btn-danger" [routerLink]="['/movies', movie.id, movie.original_language]">See more details</button>
+    </div>
+  </div>
+</div>
+
+<div class="container btn-loadmore row" *ngIf="moviesSearch.length != 0 && total_pages >= page">
+  <button class="btn btn-success btn-loadmore" (click)="getFilteredMovies()">Load more movies</button>
 </div>

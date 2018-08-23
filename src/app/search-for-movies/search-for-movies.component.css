@@ -47,8 +47,76 @@ label {
 .movie:hover {
     cursor: pointer;
     background-color: orangered;
+    color: white;
 }
 .image {
     margin-top: 5px;
     width: 50px;
+}
+
+
+.dropdown-content {
+    position: absolute;
+    top: 29px;
+    left: 1.5%;
+    width: 97%;
+    z-index: 9999;
+}
+
+.movie {
+    background-color: white;
+}
+
+.movie-info-main {
+    position: relative;
+    min-height: 500px;
+}
+
+.movie-btn {
+    margin: 20px 0;
+    padding: 5px 20px;
+    text-align: center;
+}
+
+.img-a{
+    background-image: url("../../assets/img/favorite.png");
+    width: 70px;
+    height: 17px;
+    margin: 10px 0;
+}
+
+.block{ 
+    margin: 50px auto;
+    width: 100%;
+}
+
+.btn-loadmore {
+    margin: 20px auto;
+}
+
+.movie-description {
+    min-height: 100px;
+}
+
+.filteredMovies {
+    float: left;
+    margin: 40px auto;
+    box-shadow: 0px 5px 15px 0px rgba(0,0,0,0.75);
+    transition: all .5s;
+    background-color: white;
+    position: relative;
+    width: 30%;
+    padding: 20px;
+}
+
+.filteredMovies:hover {
+    cursor: pointer;
+    transform: scale(1.04);
+    z-index: 100;
+}
+
+.image-big {
+    width: 100%;
+    height: 400px;
+    padding: 0;
 }
