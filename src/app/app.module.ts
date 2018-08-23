@@ -9,6 +9,7 @@ import { MoviesListComponent } from './movies-list/movies-list.component';
 import { SearchForMoviesComponent } from './search-for-movies/search-for-movies.component';
 import { MoviesDetailsComponent } from './movies-details/movies-details.component';
 import { OverviewLengthDirective } from '../shared/directives/overview-length.directive';
+import { StarComponent } from '../shared/components/star/star.component';
 
 @NgModule({
   declarations: [
@@ -16,7 +17,8 @@ import { OverviewLengthDirective } from '../shared/directives/overview-length.di
     MoviesListComponent,
     SearchForMoviesComponent,
     MoviesDetailsComponent,
-    OverviewLengthDirective, 
+    OverviewLengthDirective,
+    StarComponent, 
   ],
   imports: [
     BrowserModule,

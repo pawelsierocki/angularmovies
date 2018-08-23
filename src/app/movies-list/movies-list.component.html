@@ -7,9 +7,7 @@
                   src="{{movie.poster_path != null ? imgPath+movie.poster_path : '../../assets/img/default.png'}}">
         <h2 class="title">{{movie.original_title}}</h2>
       </div>
-      <div class="movie-stars">
-        <img class="img-a">
-     </div>
+      <star-component [rating]='movie.vote_average'></star-component>
       <div class="movie-description">{{movie.overview.length < 200 ? movie.overview : movie.overview.slice(1,200)+'...'}}</div>
       <div class="movie-btn">
         <button class="btn btn-danger" [routerLink]="['/movies', movie.id, movie.original_language]">See more details</button>

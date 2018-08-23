@@ -78,13 +78,6 @@ label {
     text-align: center;
 }
 
-.img-a{
-    background-image: url("../../assets/img/favorite.png");
-    width: 70px;
-    height: 17px;
-    margin: 10px 0;
-}
-
 .block{ 
     margin: 50px auto;
     width: 100%;
