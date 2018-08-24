@@ -10,6 +10,11 @@ import { SearchForMoviesComponent } from './search-for-movies/search-for-movies.
 import { MoviesDetailsComponent } from './movies-details/movies-details.component';
 import { OverviewLengthDirective } from '../shared/directives/overview-length.directive';
 import { StarComponent } from '../shared/components/star/star.component';
+import { LoginComponent } from './login/login.component';
+import { NotFoundComponent } from './not-found/not-found.component';
+import { MenuComponent } from './menu/menu.component';
+import { MoviesDetailsGuard } from './movies-details/movies-details.guard';
+import { UserInfoComponent } from './user-info/user-info.component';
 
 @NgModule({
   declarations: [
@@ -18,16 +23,22 @@ import { StarComponent } from '../shared/components/star/star.component';
     SearchForMoviesComponent,
     MoviesDetailsComponent,
     OverviewLengthDirective,
-    StarComponent, 
+    StarComponent,
+    LoginComponent, 
+    NotFoundComponent, MenuComponent, UserInfoComponent
   ],
   imports: [
     BrowserModule,
     RouterModule.forRoot([
       { path: 'movies', component: MoviesListComponent },
-      { path: 'search', component: SearchForMoviesComponent },
+      { path: 'search', 
+      canActivate: [ MoviesDetailsGuard ],
+      component: SearchForMoviesComponent },
       { path: 'movies/:id/:lang', component: MoviesDetailsComponent },
+      { path: 'login', component: LoginComponent},
       { path: '', redirectTo: 'movies', pathMatch: 'full' },
-      { path: '**', redirectTo: 'movies', pathMatch: 'full' }
+      { path: '404', component: NotFoundComponent},
+      { path: '**', redirectTo: '/404'}
     ]),
     HttpClientModule,
     FormsModule

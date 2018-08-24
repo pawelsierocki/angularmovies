@@ -1,0 +1,25 @@
+<div class="wrapper fadeInDown">
+
+  <div id="formContent">
+    <div class="wrongInfo" *ngIf="wrongData">Login or password incorrect. Please try again.</div>
+    <h2 class="active"> Sign In </h2>
+
+
+    <div class="fadeIn first">
+      <img src="../../assets/img/guest.png" id="icon" alt="User Icon" />
+    </div>
+
+
+    <form>
+      <input type="text" id="login" class="fadeIn second" name="login" placeholder="login" [(ngModel)]="login">
+      <input type="password" id="password" class="fadeIn third" name="login" placeholder="password" [(ngModel)]="password">
+      <input type="submit" class="fadeIn fourth" value="Log In" (click)="submit()">
+    </form>
+
+
+    <div id="formFooter">
+      <a class="underlineHover" href="#">Don't have an account ? Register</a>
+    </div>
+
+  </div>
+</div>
