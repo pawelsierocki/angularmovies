@@ -104,7 +104,12 @@ export class LoginComponent implements OnInit {
         taken = true;
     });
 
-    if (this.isValidCharacter(this.loginRegister) == false || this.isValidCharacter(this.passwordRegister) == false) {
+    if (this.loginRegister === undefined || this.loginRegister === "" || this.passwordRegister === undefined || this.passwordRegister === "") {
+      this.isLoggedIn = false;
+      this.clearFields();
+      this.displayMessage();
+
+    } else if (this.isValidCharacter(this.loginRegister) == false || this.isValidCharacter(this.passwordRegister) == false) {
       this.invalidCharacters = true;
          setTimeout(() => {
           this.invalidCharacters = false;
@@ -112,11 +117,6 @@ export class LoginComponent implements OnInit {
 
         this.clearFields();
         this.isLoggedIn = false;
-
-    } else if (this.loginRegister === "" || this.passwordRegister === "") {
-      this.isLoggedIn = false;
-      this.clearFields();
-      this.displayMessage();
 
     } else if (taken) {
         this.loginTaken = true;
