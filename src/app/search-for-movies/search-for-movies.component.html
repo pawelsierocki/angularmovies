@@ -6,6 +6,7 @@
           alt="{{movie.original_title}}"
           src="{{movie.poster_path != null ? imgPath+movie.poster_path : '../../assets/img/default.png'}}">
       <p class="search-title">{{movie.original_title}}</p>
+      <star-component [rating]='movie.vote_average'></star-component>
     </div>   
 
   </div>        

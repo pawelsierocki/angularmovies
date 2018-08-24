@@ -9,8 +9,7 @@
 }
 
 .movie-btn {
-    margin: 20px 0;
-    padding: 5px 20px;
+    margin: 20px 0 0 0;
     text-align: center;
 }
 
@@ -40,7 +39,7 @@
 
 .singleMovie:hover {
     cursor: pointer;
-    transform: scale(1.04);
+    transform: scale(1.02);
     z-index: 9999;
 }
 
