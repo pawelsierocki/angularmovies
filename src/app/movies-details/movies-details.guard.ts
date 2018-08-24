@@ -16,7 +16,6 @@ export class MoviesDetailsGuard implements CanActivate {
     let isLoggedIn = JSON.parse(localStorage.getItem("isLogged"));
     console.log(isLoggedIn);
     if (isLoggedIn != true){
-      alert('Please login first');
       this.router.navigate(['/login'])
       return false;
     };

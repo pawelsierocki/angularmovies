@@ -16,7 +16,8 @@ export class UserInfoComponent implements OnInit {
   }
 
   logout() : void {
-    localStorage.clear();
+    localStorage.removeItem("login");
+    localStorage.removeItem("isLogged");
     location.reload();
   }
 }

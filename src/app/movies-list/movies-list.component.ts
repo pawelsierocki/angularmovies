@@ -15,6 +15,7 @@ export class MoviesListComponent implements OnInit {
   arrayOfMovies : Array<any> = [];
   maxLength : number = 250;
   global_page : number = 1;
+  freshLoggedIn : boolean = false;
 
   private moviesURL = 'https://api.themoviedb.org/3/discover/movie?api_key=115146a3593f60beb8227811cdc632c4&sort_by=vote_average.desc&include_adult=false&include_video=false&page='+this.global_page;
   constructor(private getDataService: GetDataService) { }
@@ -55,6 +56,14 @@ export class MoviesListComponent implements OnInit {
 
   ngOnInit() {
     this.getMovies();
+
+    if (JSON.parse(localStorage.getItem("freshLogged"))) {
+      this.freshLoggedIn = true;
+      setTimeout(() => {
+        this.freshLoggedIn = false;
+        localStorage.removeItem("freshLogged");
+      }, 3000); 
+    }
   }
 
 }
