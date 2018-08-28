@@ -2,8 +2,9 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router'
 import { HttpClientModule } from '@angular/common/http'
-import { FormsModule } from '@angular/forms';
- 
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
+
 import { AppComponent } from './app.component';
 import { MoviesListComponent } from './movies-list/movies-list.component';
 import { SearchForMoviesComponent } from './search-for-movies/search-for-movies.component';
@@ -15,6 +16,10 @@ import { NotFoundComponent } from './not-found/not-found.component';
 import { MenuComponent } from './menu/menu.component';
 import { MoviesDetailsGuard } from './movies-details/movies-details.guard';
 import { UserInfoComponent } from './user-info/user-info.component';
+import { LoaderComponent } from './loader/loader.component';
+import { LoaderInterceptorService } from '../shared/services/loader-interceptor.service';
+import { LoaderService } from '../shared/services/loader.service';
+
 
 @NgModule({
   declarations: [
@@ -25,7 +30,7 @@ import { UserInfoComponent } from './user-info/user-info.component';
     OverviewLengthDirective,
     StarComponent,
     LoginComponent, 
-    NotFoundComponent, MenuComponent, UserInfoComponent
+    NotFoundComponent, MenuComponent, UserInfoComponent, LoaderComponent
   ],
   imports: [
     BrowserModule,
@@ -41,9 +46,17 @@ import { UserInfoComponent } from './user-info/user-info.component';
       { path: '**', redirectTo: '/404'}
     ]),
     HttpClientModule,
-    FormsModule
+    FormsModule,
+    ReactiveFormsModule,
   ],
-  providers: [],
+  providers: [
+    LoaderService,
+    {
+    provide: HTTP_INTERCEPTORS,
+    useClass: LoaderInterceptorService,
+    multi: true
+    }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

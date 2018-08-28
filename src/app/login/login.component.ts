@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-login',
@@ -8,9 +9,10 @@ import { Router } from '@angular/router';
 })
 
 export class LoginComponent implements OnInit {
+  registerForm: FormGroup;
+  submitted = false;
 
   toLogin : boolean = true;
-  toRegister : boolean = false;
   login : string;
   password: string;
   loginRegister : string;
@@ -19,7 +21,6 @@ export class LoginComponent implements OnInit {
   loginTaken : boolean = false;
   isLoggedIn : boolean = false;
   wrongData : boolean = false;
-  invalidCharacters : boolean = false;
   users : any = [
     {
       login : "psierocki",
@@ -27,7 +28,10 @@ export class LoginComponent implements OnInit {
     }
   ]
 
-  constructor(public router: Router) { }
+  constructor(public router: Router,
+              private formBuilder: FormBuilder) { }
+
+  get f() { return this.registerForm.controls; }
 
   ngOnInit() {
     if (JSON.parse(localStorage.getItem("Array")) != null)
@@ -35,6 +39,11 @@ export class LoginComponent implements OnInit {
     if (localStorage.getItem("login")) {
       this.router.navigate(['/movies']);
     }
+
+    this.registerForm = this.formBuilder.group({
+      formLogin: ['', Validators.required],
+      password: ['', [Validators.required, Validators.minLength(6)]]
+    });
   }
 
   displayMessage () : void{
@@ -42,17 +51,6 @@ export class LoginComponent implements OnInit {
     setTimeout(() => {
       this.wrongData = false;
     }, 3000);
-  }
-
-  isValidCharacter(text) {   
-    var regExp = /^[a-zA-Z0-9]*$/
-    if (!regExp.test(text)) {
-       text = '';
-       return false;
-       }
-     else {      
-          return true;
-       }
   }
 
   clearFields () : void {
@@ -73,16 +71,7 @@ export class LoginComponent implements OnInit {
         
     });
 
-    if (this.isValidCharacter(this.login) == false || this.isValidCharacter(this.password) == false) {
-      this.invalidCharacters = true;
-         setTimeout(() => {
-          this.invalidCharacters = false;
-        }, 3000);    
-
-        this.clearFields();
-        this.isLoggedIn = false;
-    }  
-    else if (match) {
+   if (match) {
       console.log(obj);
       this.isLoggedIn = true;
       localStorage.setItem("isLogged", JSON.stringify(this.isLoggedIn));
@@ -97,8 +86,15 @@ export class LoginComponent implements OnInit {
     }
   }
 
-  register() : void {
-    let taken : boolean = false;
+  onSubmit() : void {
+    this.submitted = true;
+ 
+
+    if (this.registerForm.invalid) {
+        return;
+    } else {
+      
+      let taken : boolean = false;
     this.users.forEach(element => {
       if (element.login === this.loginRegister)
         taken = true;
@@ -108,15 +104,6 @@ export class LoginComponent implements OnInit {
       this.isLoggedIn = false;
       this.clearFields();
       this.displayMessage();
-
-    } else if (this.isValidCharacter(this.loginRegister) == false || this.isValidCharacter(this.passwordRegister) == false) {
-      this.invalidCharacters = true;
-         setTimeout(() => {
-          this.invalidCharacters = false;
-        }, 3000);    
-
-        this.clearFields();
-        this.isLoggedIn = false;
 
     } else if (taken) {
         this.loginTaken = true;
@@ -134,7 +121,6 @@ export class LoginComponent implements OnInit {
       localStorage.setItem('Array', JSON.stringify(this.users));
 
       this.toLogin = !this.toLogin;
-      this.toRegister = !this.toRegister;
 
       this.clearFields();
 
@@ -144,5 +130,8 @@ export class LoginComponent implements OnInit {
       }, 5000); 
      
     }
+    }
+ 
+    this.submitted = false;
   }
 }
