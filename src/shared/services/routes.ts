@@ -4,6 +4,7 @@ import { MoviesDetailsComponent } from "../../app/movies-details/movies-details.
 import { MoviesListComponent } from "../../app/movies-list/movies-list.component";
 import { LoginComponent } from "../../app/login/login.component";
 import { NotFoundComponent } from "../../app/not-found/not-found.component";
+import { RegisterComponent } from "../../app/register/register.component";
 
 export class Routes{
     static routesArray = [
@@ -13,6 +14,7 @@ export class Routes{
             component: SearchForMoviesComponent },
             { path: 'movies/:id/:lang', component: MoviesDetailsComponent },
             { path: 'login', component: LoginComponent},
+            { path: 'register', component: RegisterComponent},
             { path: '', redirectTo: 'movies', pathMatch: 'full' },
             { path: '404', component: NotFoundComponent},
             { path: '**', redirectTo: '/404'}

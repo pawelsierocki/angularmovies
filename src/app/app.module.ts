@@ -21,6 +21,7 @@ import { LoaderService } from '../shared/services/loader.service';
 import { MovieComponent } from './movie/movie.component';
 import { Routes } from '../shared/services/routes';
 import { GoBackComponent } from './go-back/go-back.component';
+import { RegisterComponent } from './register/register.component';
 
 @NgModule({
   declarations: [
@@ -31,7 +32,7 @@ import { GoBackComponent } from './go-back/go-back.component';
     OverviewLengthDirective,
     StarComponent,
     LoginComponent, 
-    NotFoundComponent, MenuComponent, UserInfoComponent, LoaderComponent, MovieComponent, GoBackComponent
+    NotFoundComponent, MenuComponent, UserInfoComponent, LoaderComponent, MovieComponent, GoBackComponent, RegisterComponent
   ],
   imports: [
     BrowserModule,

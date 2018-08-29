@@ -1,0 +1,39 @@
+<app-go-back></app-go-back>
+<div class="wrapper fadeInDown">
+
+  <div id="formContent">
+    <h2 class="active"> Register </h2>
+
+
+    <div class="fadeIn first">
+      <img src="../../assets/img/register.png" id="icon" alt="User Icon" />
+    </div>
+    <div class="alert alert-success" *ngIf="accountIsRegistered">Account registered successfully. You can sign in now.</div>
+    <div class="alert alert-danger" *ngIf="loginTaken">This login is already taken.</div>
+    <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+        <div class="form-group">
+            <input type="text" required pattern="^[a-zA-Z0-9]*$" autocomplete="no" formControlName="formLogin"  id="loginRegister" class="fadeIn second form-control" name="login" placeholder="login" [(ngModel)]="loginRegister" [ngClass]="{ 'is-invalid': submitted && f.formLogin.errors }">              
+            <div *ngIf="submitted && f.formLogin.errors" class="invalid-feedback">
+                <div *ngIf="f.formLogin.errors.required">Login is required</div>
+                <div *ngIf="f.formLogin.errors.pattern">No special characters allowed !</div>
+            </div>
+        </div>
+        <div class="form-group">
+            <input type="password" formControlName="password" id="passwordRegister" class="fadeIn third form-control" name="login" placeholder="password" [(ngModel)]="passwordRegister" [ngClass]="{ 'is-invalid': submitted && f.password.errors }">              
+            <div *ngIf="submitted && f.password.errors" class="invalid-feedback">
+                <div *ngIf="f.password.errors.required">Password is required</div>
+                <div *ngIf="f.password.errors.minlength">Password must be at least 6 characters</div>
+            </div>
+        </div>
+        <div class="form-group">
+          <input type="submit" class="fadeIn fourth" value="Register">
+        </div>
+      
+    </form>
+
+    <div id="formFooter">
+      <a class="underlineHover" (click)="toLogin()">Already have an account ? Sign in !</a>
+    </div>
+
+  </div>
+</div>
