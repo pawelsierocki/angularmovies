@@ -1,7 +1,13 @@
 <nav class="stroke">
   <ul>
-    <li><a [routerLink]="['/movies']" >Home</a></li>
-    <li><a [routerLink]="['/search']">Search for movies</a></li>
+    <li><a 
+      [routerLink]="['/movies']" 
+      routerLinkActive="active"
+      [routerLinkActiveOptions]="{exact:true}">Home</a></li>
+    <li><a 
+      [routerLink]="['/search']"
+      routerLinkActive="active"
+      [routerLinkActiveOptions]="{exact:true}"></a>>Search for movies</a></li>
   </ul>
   <app-user-info></app-user-info>
 </nav>

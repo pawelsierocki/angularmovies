@@ -59,3 +59,7 @@ nav {
   nav.stroke ul li a:hover:after {
     width: 100%;
   }
+
+  nav.stroke ul li a.active {
+    color : red;
+  }
