@@ -14,12 +14,13 @@ import { StarComponent } from '../shared/components/star/star.component';
 import { LoginComponent } from './login/login.component';
 import { NotFoundComponent } from './not-found/not-found.component';
 import { MenuComponent } from './menu/menu.component';
-import { MoviesDetailsGuard } from './movies-details/movies-details.guard';
-import { UserInfoComponent } from './user-info/user-info.component';
+import { UserInfoComponent } from './menu/user-info/user-info.component';
 import { LoaderComponent } from './loader/loader.component';
 import { LoaderInterceptorService } from '../shared/services/loader-interceptor.service';
 import { LoaderService } from '../shared/services/loader.service';
-
+import { MovieComponent } from './movie/movie.component';
+import { Routes } from '../shared/services/routes';
+import { GoBackComponent } from './go-back/go-back.component';
 
 @NgModule({
   declarations: [
@@ -30,21 +31,11 @@ import { LoaderService } from '../shared/services/loader.service';
     OverviewLengthDirective,
     StarComponent,
     LoginComponent, 
-    NotFoundComponent, MenuComponent, UserInfoComponent, LoaderComponent
+    NotFoundComponent, MenuComponent, UserInfoComponent, LoaderComponent, MovieComponent, GoBackComponent
   ],
   imports: [
     BrowserModule,
-    RouterModule.forRoot([
-      { path: 'movies', component: MoviesListComponent },
-      { path: 'search', 
-      canActivate: [ MoviesDetailsGuard ],
-      component: SearchForMoviesComponent },
-      { path: 'movies/:id/:lang', component: MoviesDetailsComponent },
-      { path: 'login', component: LoginComponent},
-      { path: '', redirectTo: 'movies', pathMatch: 'full' },
-      { path: '404', component: NotFoundComponent},
-      { path: '**', redirectTo: '/404'}
-    ]),
+    RouterModule.forRoot(Routes.routesArray),
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
@@ -52,9 +43,9 @@ import { LoaderService } from '../shared/services/loader.service';
   providers: [
     LoaderService,
     {
-    provide: HTTP_INTERCEPTORS,
-    useClass: LoaderInterceptorService,
-    multi: true
+      provide: HTTP_INTERCEPTORS,
+      useClass: LoaderInterceptorService,
+      multi: true
     }
   ],
   bootstrap: [AppComponent]

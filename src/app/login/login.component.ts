@@ -10,6 +10,7 @@ import { User } from '../../shared/services/user'
 })
 
 export class LoginComponent implements OnInit {
+  
   registerForm: FormGroup;
   submitted = false;
 

@@ -1,0 +1,13 @@
+<div class="singleMovie">
+    <div class="movie-info">
+      <img class="image" 
+                alt="{{movie.original_title}}"
+                src="{{movie.poster_path != null ? path+movie.poster_path : '../../assets/img/default.png'}}">
+      <h2 class="title">{{movie.original_title}}</h2>
+    </div>
+    <star-component [rating]='movie.vote_average'></star-component>
+    <div class="movie-description">{{movie.overview.length < 200 ? movie.overview : movie.overview.slice(1,200)+'...'}}</div>
+    <div class="movie-btn">
+      <button class="btn btn-danger" [routerLink]="['/movies', movie.id, movie.original_language]">See more details</button>
+    </div>
+</div>

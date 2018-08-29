@@ -1,20 +1,16 @@
 <app-menu></app-menu>
-<div class="arrow-box">
-    <i class="fas fa-arrow-alt-circle-left my-arrow" (click)="onBack()" title="Back"></i>
-    <p class="goBack">Go back</p>
-</div>
-
-    <img class="space"src="../../assets/img/movie.png" alt="movie_tape">
+<app-go-back></app-go-back>
+<img class="space" src="../../assets/img/movie.png" alt="movie_tape">
 
 <div class="container">
-    <div class="title"><h1>{{title}}</h1></div>
-    <div class="overview">{{overview}}</div>
-    <div class="release-date">Release date: {{releaseTime}}</div>
-    <div class="vote-average">Vote average: {{voteAverage}}/10</div>
+    <div class="title"><h1>{{globals.movie.original_title}}</h1></div>
+    <div class="overview">{{globals.movie.overview}}</div>
+    <div class="release-date">Release date: {{globals.movie.release_date}}</div>
+    <div class="vote-average">Vote average: {{globals.movie.vote_average}}/10</div>
 </div>
 
 <div class="media container">
-    <img class="poster" src="{{posterPath}}" alt="{{title}}">
+    <img class="poster" src="{{globals.posterPath}}" alt="{{globals.movie.original_title}}">
     <iframe class = "trailer" width="550" height="315"
         [src]="urlSafe">
     </iframe>

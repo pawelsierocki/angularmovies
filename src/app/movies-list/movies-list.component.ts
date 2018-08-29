@@ -8,45 +8,48 @@ import { GetDataService } from '../../shared/services/get-data.service';
 })
 export class MoviesListComponent implements OnInit {
 
-  imgPath = `https://image.tmdb.org/t/p/w200`;
-  errorMessage : string;
-  movies: any;
-  index : number = 0;
-  arrayOfMovies : Array<any> = [];
-  maxLength : number = 250;
-  global_page : number = 1;
-  freshLoggedIn : boolean = false;
+  globals : any = {
+    errorMessage : '',
+    movies : [],
+    index : 0,
+    arrayOfMovies : [],
+    maxLength : 250,
+    global_page : 1,
+    freshLoggedIn : false
+  }
+  
+  
 
-  private moviesURL = 'https://api.themoviedb.org/3/discover/movie?api_key=115146a3593f60beb8227811cdc632c4&sort_by=vote_average.desc&include_adult=false&include_video=false&page='+this.global_page;
+  private moviesURL = 'https://api.themoviedb.org/3/discover/movie?api_key=115146a3593f60beb8227811cdc632c4&sort_by=vote_average.desc&include_adult=false&include_video=false&page='+this.globals.global_page;
   constructor(private getDataService: GetDataService) { }
 
   getMovies (){
     this.getDataService.getData(this.moviesURL).subscribe(
       movies => {
-        this.movies = movies["results"],
+        this.globals.movies = movies["results"],
         this.selectMovies()
       },
-      error => this.errorMessage = <any>error
+      error => this.globals.errorMessage = <any>error
     );
   } 
   
   selectMovies() : void {
-    let length : number = this.movies.length;
-    if (this.arrayOfMovies.length === 0) {
+    let length : number = this.globals.movies.length;
+    if (this.globals.arrayOfMovies.length === 0) {
       for (let i=0;i<3;i++){
-        this.arrayOfMovies.push(this.movies[i]);
-        this.index++;
+        this.globals.arrayOfMovies.push(this.globals.movies[i]);
+        this.globals.index++;
       }
     } else {
-      for (let i=this.index;i<this.index+3;i++){
-        if (this.index === length){
-          this.global_page++;
-          this.index=0;
-          this.moviesURL = 'https://api.themoviedb.org/3/discover/movie?api_key=115146a3593f60beb8227811cdc632c4&sort_by=vote_average.desc&include_adult=false&include_video=false&page='+this.global_page;
+      for (let i=this.globals.index;i<this.globals.index+3;i++){
+        if (this.globals.index === length){
+          this.globals.global_page++;
+          this.globals.index=0;
+          this.moviesURL = 'https://api.themoviedb.org/3/discover/movie?api_key=115146a3593f60beb8227811cdc632c4&sort_by=vote_average.desc&include_adult=false&include_video=false&page='+this.globals.global_page;
           break;
         } else {
-          this.arrayOfMovies.push(this.movies[this.index])
-          this.index++;
+          this.globals.arrayOfMovies.push(this.globals.movies[this.globals.index])
+          this.globals.index++;
         }
       }
     }
@@ -58,9 +61,9 @@ export class MoviesListComponent implements OnInit {
     this.getMovies();
 
     if (JSON.parse(localStorage.getItem("freshLogged"))) {
-      this.freshLoggedIn = true;
+      this.globals.freshLoggedIn = true;
       setTimeout(() => {
-        this.freshLoggedIn = false;
+        this.globals.freshLoggedIn = false;
         localStorage.removeItem("freshLogged");
       }, 3000); 
     }
