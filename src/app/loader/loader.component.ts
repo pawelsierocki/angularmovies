@@ -10,6 +10,7 @@ import { LoaderState } from '../../shared/services/loader-s.service';
 export class LoaderComponent implements OnInit, OnDestroy {
   show = false;
   private subscription: Subscription;
+  
   constructor(private loaderService: LoaderService) { }
   ngOnInit() {
     this.subscription = this.loaderService.loaderState

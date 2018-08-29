@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { User } from '../../shared/services/user'
 
 @Component({
   selector: 'app-login',
@@ -21,7 +22,7 @@ export class LoginComponent implements OnInit {
   loginTaken : boolean = false;
   isLoggedIn : boolean = false;
   wrongData : boolean = false;
-  users : any = [
+  users : Array<User> = [
     {
       login : "psierocki",
       password : "test123"
@@ -113,10 +114,14 @@ export class LoginComponent implements OnInit {
         this.clearFields();
 
     } else {
-      this.users.push({
+      let newUser = new User;
+      
+      newUser = {
         login: this.loginRegister,
         password: this.passwordRegister
-      })
+      }
+
+      this.users.push(newUser);
 
       localStorage.setItem('Array', JSON.stringify(this.users));
 

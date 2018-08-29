@@ -278,12 +278,6 @@ input:focus{
   box-sizing: border-box;
 }
 
-.warning {
-  background-color: orangered;
-  padding: 10px 30px;
-  color: black;
-}
-
 .form-control {
   height: inherit;
 }
