@@ -19,7 +19,7 @@ import { LoaderComponent } from './loader/loader.component';
 import { LoaderInterceptorService } from '../shared/services/loader-interceptor.service';
 import { LoaderService } from '../shared/services/loader.service';
 import { MovieComponent } from './movie/movie.component';
-import { Routes } from '../shared/services/routes';
+import { appRoutes } from '../shared/services/routes';
 import { GoBackComponent } from './go-back/go-back.component';
 import { RegisterComponent } from './register/register.component';
 
@@ -36,7 +36,7 @@ import { RegisterComponent } from './register/register.component';
   ],
   imports: [
     BrowserModule,
-    RouterModule.forRoot(Routes.routesArray),
+    RouterModule.forRoot(appRoutes),
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule,

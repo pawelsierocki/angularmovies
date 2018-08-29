@@ -5,9 +5,9 @@ import { MoviesListComponent } from "../../app/movies-list/movies-list.component
 import { LoginComponent } from "../../app/login/login.component";
 import { NotFoundComponent } from "../../app/not-found/not-found.component";
 import { RegisterComponent } from "../../app/register/register.component";
+import { Routes } from "@angular/router";
 
-export class Routes{
-    static routesArray = [
+export const appRoutes : Routes = [
             { path: 'movies', component: MoviesListComponent },
             { path: 'search', 
             canActivate: [ MoviesDetailsGuard ],
@@ -19,4 +19,3 @@ export class Routes{
             { path: '404', component: NotFoundComponent},
             { path: '**', redirectTo: '/404'}
     ]
-}

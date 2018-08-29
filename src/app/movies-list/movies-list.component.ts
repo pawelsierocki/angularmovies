@@ -6,6 +6,7 @@ import { GetDataService } from '../../shared/services/get-data.service';
   templateUrl: './movies-list.component.html',
   styleUrls: ['./movies-list.component.css']
 })
+
 export class MoviesListComponent implements OnInit {
 
   globals : any = {
@@ -55,7 +56,6 @@ export class MoviesListComponent implements OnInit {
     }
     
   }
-
 
   ngOnInit() {
     this.getMovies();
