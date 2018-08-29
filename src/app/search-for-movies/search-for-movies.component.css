@@ -112,3 +112,8 @@ label {
     height: 400px;
     padding: 0;
 }
+
+.movieStyle {
+    width: 32%;
+    margin: 0 auto;
+}

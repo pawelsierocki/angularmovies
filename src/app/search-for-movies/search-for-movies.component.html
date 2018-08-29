@@ -33,19 +33,7 @@
 </div>
 
 <div class="block row">
-  <div class="filteredMovies" *ngFor="let movie of globals.moviesSearch">
-    <div class="movie-info-main">
-      <img class="image-big" 
-                alt="{{movie.original_title}}"
-                src="{{movie.poster_path != null ? globals.imgPath+movie.poster_path : '../../assets/img/default.png'}}">
-      <h2 class="title-big">{{movie.original_title}}</h2>
-    </div>
-    <star-component [rating]='movie.vote_average'></star-component>
-    <div class="movie-description">{{movie.overview.length < 200 ? movie.overview : movie.overview.slice(1,200)+'...'}}</div>
-    <div class="movie-btn">
-      <button class="btn btn-danger" [routerLink]="['/movies', movie.id, movie.original_language]">See more details</button>
-    </div>
-  </div>
+  <app-movie class="movieStyle" *ngFor="let movie of globals.moviesSearch" [movie]="movie"></app-movie>
 </div>
 
 <div class="container btn-loadmore row" *ngIf="globals.moviesSearch.length != 0 && globals.total_pages >= globals.page">
