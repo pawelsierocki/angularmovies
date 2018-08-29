@@ -62,4 +62,5 @@ nav {
 
   nav.stroke ul li a.active {
     color : red;
+    text-shadow: 1px 5px 25px black;
   }
