@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router'
 import { GetDataService } from '../../shared/services/get-data.service'
 import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
+import { Comment } from '../../shared/services/comment'
+import { User } from '../../shared/services/user';
 
 @Component({
   selector: 'app-movies-details',
@@ -15,9 +17,15 @@ export class MoviesDetailsComponent implements OnInit {
     errorMessage : '',
     movieURL: '',
     posterPath :  '',
-    trailer_source :  ''
+    trailer_source :  '',
+    commentText : '',
+    id : '',
+    language: '',
+    user : ''
   }
 
+  selectedComments : Array<Comment> = [];
+  allComments : Array<Comment> = [];
   urlSafe: SafeResourceUrl;
 
   constructor(private route: ActivatedRoute,
@@ -25,9 +33,20 @@ export class MoviesDetailsComponent implements OnInit {
               public sanitizer: DomSanitizer) { }
 
   ngOnInit() {
-    let id : number = +this.route.snapshot.paramMap.get('id');
-    let language : string = this.route.snapshot.paramMap.get('lang');
-    this.globals.movieURL = `https://api.themoviedb.org/3/movie/${id}?language=${language}&api_key=115146a3593f60beb8227811cdc632c4`;
+    this.globals.user = JSON.parse(localStorage.getItem("user"));
+    this.globals.id = +this.route.snapshot.paramMap.get('id');
+    this.globals.language = this.route.snapshot.paramMap.get('lang');
+    this.globals.movieURL = `https://api.themoviedb.org/3/movie/${this.globals.id}?language=${this.globals.language}&api_key=115146a3593f60beb8227811cdc632c4`;
+    
+    if (localStorage.getItem("commentsArray")){
+      this.allComments = JSON.parse(localStorage.getItem("commentsArray"));
+      console.log(this.allComments)
+      this.allComments.forEach(comment => {
+        if (comment.film_id === this.globals.id)
+          this.selectedComments.push(comment);
+      });
+    }
+  
     this.getMovies();
   }
 
@@ -54,12 +73,26 @@ export class MoviesDetailsComponent implements OnInit {
     );
   }
 
-  setMovie () {
+  setMovie () : void{
     this.getTrailer();
     if (this.globals.movie.poster_path != null ) {
       this.globals.posterPath = `https://image.tmdb.org/t/p/w200` +this.globals.movie.poster_path;
     } else {
       this.globals.posterPath = '../../assets/img/default.png';
     }
+  }
+  
+  addComment() : void {
+    let comment = {
+      comment: this.globals.commentText, 
+      film_id :this.globals.id, 
+      film_language: this.globals.language, 
+      user: this.globals.user
+    }
+    this.allComments.push(comment);
+    this.selectedComments.push(comment);
+    
+    this.globals.commentText = '';
+    localStorage.setItem("commentsArray", JSON.stringify(this.allComments));
   }
 }

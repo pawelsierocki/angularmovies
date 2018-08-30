@@ -59,6 +59,7 @@ export class LoginComponent implements OnInit {
       localStorage.setItem("isLogged", JSON.stringify(this.isLoggedIn));
       localStorage.setItem("freshLogged", JSON.stringify(true));
       localStorage.setItem("login", obj.login);
+      localStorage.setItem("user", JSON.stringify(obj));
       this.router.navigate(['/movies']);
     }
     else{

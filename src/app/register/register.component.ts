@@ -64,7 +64,8 @@ export class RegisterComponent implements OnInit{
       
       newUser = {
         login: this.loginRegister,
-        password: this.passwordRegister
+        password: this.passwordRegister,
+        img : "avatar5.png"
       }
 
       this.users.push(newUser);

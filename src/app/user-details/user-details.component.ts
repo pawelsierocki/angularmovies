@@ -42,22 +42,38 @@ export class UserDetailsComponent implements OnInit {
   }
 
   onSubmit() : void {
-    this.users.forEach(user => {
-      if (user.login === this.login){
-        if (user.name != this.name)
-          user.name = this.name;
-        if (user.surname != this.surname)
-          user.surname = this.surname;
+    this.users.forEach(usr => {
+      if (usr.login === this.login){
+        if (usr.name != this.name)
+          usr.name = this.name;
+        if (usr.surname != this.surname)
+          usr.surname = this.surname;
         if (this.password != undefined && this.password != null && this.password === this.password_repeat && this.password.length >= 6) {
-          user.password = this.password;
+          usr.password = this.password;
         } 
         if (this.file) {
-          user.img = this.file;
+          usr.img = this.file;
         }
+        localStorage.setItem("user", JSON.stringify(usr));
       }
     })
     this.isDirty = false;
+ 
     localStorage.setItem("Array", JSON.stringify(this.users));
+
+    let commentsArray = JSON.parse(localStorage.getItem("commentsArray"));
+
+    commentsArray.forEach(element => {
+      this.users.forEach(user =>{
+        if (element.user.login === user.login){
+          console.log(element.user.login)
+          element.user = user;
+        }
+          
+      })
+    });
+
+    localStorage.setItem("commentsArray", JSON.stringify(commentsArray));
   }
 
   onFileChanged(event) {

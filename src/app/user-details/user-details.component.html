@@ -1,16 +1,14 @@
 <app-menu></app-menu>
 <div class="container user-details">
     <div class="container">
-        <h1 class="main">Edit Profile: {{login}}</h1>
-        <hr>
       <div class="row">
          
           <div class="col-md-3">
             <div class="text-center">
               <img *ngIf="file" src="../../assets/img/{{file}}" class="avatar img-circle" alt="avatar">
-              <h6>Upload your photo...</h6>
+              <h6 *ngIf="!file">Upload your photo...</h6>
               
-              <input type="file" class="form-control" (change)="onFileChanged($event)">
+              <input type="file" class="form-control inputfile" (change)="onFileChanged($event)">
             </div>
           </div>
           

@@ -23,7 +23,6 @@ import { appRoutes } from '../shared/services/routes';
 import { GoBackComponent } from './go-back/go-back.component';
 import { RegisterComponent } from './register/register.component';
 import { UserDetailsComponent } from './user-details/user-details.component';
-import { WrappedNodeExpr } from '@angular/compiler';
 
 @NgModule({
   declarations: [
