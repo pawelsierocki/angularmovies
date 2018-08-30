@@ -87,6 +87,7 @@ export class MoviesDetailsComponent implements OnInit {
       comment: this.globals.commentText, 
       film_id :this.globals.id, 
       film_language: this.globals.language, 
+      title: this.globals.movie.original_title,
       user: this.globals.user
     }
     this.allComments.push(comment);

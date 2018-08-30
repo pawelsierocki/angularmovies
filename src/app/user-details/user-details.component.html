@@ -53,4 +53,23 @@
       </div>
     </div>
     <hr>
+    <div class="user-comments container" *ngIf="commentExist">
+      <h2 class="info">{{login}}'s comments</h2>
+
+      <div class="comments" *ngFor="let comment of userCommentsArray">
+        <div class="row">
+            <div class="col-md-4">
+                <p><strong>Comment:</strong></p>
+                <div> {{comment.comment}} </div>
+            </div>
+            <div class="col-md-4">
+                <p><strong>Movie title:</strong></p>
+                <div>{{comment.title}}</div>
+            </div>
+            <div class="col-md-4">
+                <button class="btn btn-danger btn-visit" (click)="visitSite(comment.film_id, comment.film_language)">Click to visit</button>
+            </div>
+        </div>
+      </div>
+    </div>
 </div>

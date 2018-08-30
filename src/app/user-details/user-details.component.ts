@@ -17,6 +17,9 @@ export class UserDetailsComponent implements OnInit {
   password_repeat : string;
   file : any;
   isDirty:boolean = true;
+  commentExist: boolean = false;
+  commentsArray : Array<Comment>;
+  userCommentsArray : Array<Comment> = [];
 
   constructor(public router: Router) { }
 
@@ -39,6 +42,17 @@ export class UserDetailsComponent implements OnInit {
         }
       }
     })
+
+    this.commentsArray = JSON.parse(localStorage.getItem("commentsArray"));
+    if(this.commentsArray) {
+      this.commentExist = true;
+      this.commentsArray.forEach(el => {
+        if(el["user"].login === this.login) {
+          this.userCommentsArray.push(el);
+        }
+      });
+    }
+    
   }
 
   onSubmit() : void {
@@ -66,10 +80,8 @@ export class UserDetailsComponent implements OnInit {
     commentsArray.forEach(element => {
       this.users.forEach(user =>{
         if (element.user.login === user.login){
-          console.log(element.user.login)
           element.user = user;
-        }
-          
+        }    
       })
     });
 
@@ -82,5 +94,9 @@ export class UserDetailsComponent implements OnInit {
 
   onBack() {
     this.router.navigate(['/movies']);
+  }
+
+  visitSite(id, language) {
+    this.router.navigate([`/movies/${id}/${language}`]);
   }
 }
