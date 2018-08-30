@@ -6,12 +6,16 @@ import { LoginComponent } from "../../app/login/login.component";
 import { NotFoundComponent } from "../../app/not-found/not-found.component";
 import { RegisterComponent } from "../../app/register/register.component";
 import { Routes } from "@angular/router";
+import { UserDetailsComponent } from "../../app/user-details/user-details.component";
 
 export const appRoutes : Routes = [
             { path: 'movies', component: MoviesListComponent },
             { path: 'search', 
             canActivate: [ MoviesDetailsGuard ],
             component: SearchForMoviesComponent },
+            { path: 'profile', 
+            canDeactivate: ['canDeactivateChanges'],
+            component: UserDetailsComponent,},
             { path: 'movies/:id/:lang', component: MoviesDetailsComponent },
             { path: 'login', component: LoginComponent},
             { path: 'register', component: RegisterComponent},

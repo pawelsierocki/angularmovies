@@ -22,6 +22,8 @@ import { MovieComponent } from './movie/movie.component';
 import { appRoutes } from '../shared/services/routes';
 import { GoBackComponent } from './go-back/go-back.component';
 import { RegisterComponent } from './register/register.component';
+import { UserDetailsComponent } from './user-details/user-details.component';
+import { WrappedNodeExpr } from '@angular/compiler';
 
 @NgModule({
   declarations: [
@@ -32,7 +34,7 @@ import { RegisterComponent } from './register/register.component';
     OverviewLengthDirective,
     StarComponent,
     LoginComponent, 
-    NotFoundComponent, MenuComponent, UserInfoComponent, LoaderComponent, MovieComponent, GoBackComponent, RegisterComponent
+    NotFoundComponent, MenuComponent, UserInfoComponent, LoaderComponent, MovieComponent, GoBackComponent, RegisterComponent, UserDetailsComponent
   ],
   imports: [
     BrowserModule,
@@ -44,6 +46,10 @@ import { RegisterComponent } from './register/register.component';
   providers: [
     LoaderService,
     {
+      provide: 'canDeactivateChanges', 
+      useValue: checkDirtyState
+    },
+    {
       provide: HTTP_INTERCEPTORS,
       useClass: LoaderInterceptorService,
       multi: true
@@ -52,3 +58,11 @@ import { RegisterComponent } from './register/register.component';
   bootstrap: [AppComponent]
 })
 export class AppModule { }
+
+export function checkDirtyState(component: UserDetailsComponent) {
+  if(component.isDirty)
+    return window.confirm('You have not saved your changes, do you want to cancel ?');
+  else
+    return true;
+  
+}

@@ -1,0 +1,17 @@
+.user-details {
+    margin-top: 50px;
+}
+
+.cancel {
+    margin-left: 10px;
+}
+
+.main {
+    text-align: center;
+    margin-bottom: 50px;
+}
+
+.avatar {
+    height: 100px;
+    max-width: 150px;
+}
