@@ -83,17 +83,22 @@ export class MoviesDetailsComponent implements OnInit {
   }
   
   addComment() : void {
-    let comment = {
-      comment: this.globals.commentText, 
-      film_id :this.globals.id, 
-      film_language: this.globals.language, 
-      title: this.globals.movie.original_title,
-      user: this.globals.user
+    if (this.globals.commentText.replace(/\s/g, '').length) {
+      let comment = {
+        comment: this.globals.commentText, 
+        film_id :this.globals.id, 
+        film_language: this.globals.language, 
+        title: this.globals.movie.original_title,
+        user: this.globals.user
+      }
+      this.allComments.push(comment);
+      this.selectedComments.push(comment);
+      
+      this.globals.commentText = '';
+      localStorage.setItem("commentsArray", JSON.stringify(this.allComments));
+    } else {
+      alert('Type a comment first')
     }
-    this.allComments.push(comment);
-    this.selectedComments.push(comment);
     
-    this.globals.commentText = '';
-    localStorage.setItem("commentsArray", JSON.stringify(this.allComments));
   }
 }
