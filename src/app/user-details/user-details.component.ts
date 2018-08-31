@@ -1,14 +1,21 @@
 import { Component, OnInit } from '@angular/core';
 import { User } from '../../shared/services/user';
 import { Router } from '@angular/router';
+import { FormBuilder, Validators, ValidatorFn, AbstractControl, ValidationErrors } from '@angular/forms';
+import { HashPasswordService } from '../../shared/services/hash-password.service'
 
 @Component({
   selector: 'app-user-details',
   templateUrl: './user-details.component.html',
   styleUrls: ['./user-details.component.css']
 })
+
 export class UserDetailsComponent implements OnInit {
 
+  isDirty : boolean = false;
+  updated : boolean = false;
+  submitted : boolean = false;
+  changeForm: any;
   login: string;
   users: Array<User> = [];
   name: string;
@@ -16,16 +23,35 @@ export class UserDetailsComponent implements OnInit {
   password: string;
   password_repeat : string;
   file : any;
-  isDirty:boolean = true;
+
   commentExist: boolean = false;
   commentsArray : Array<Comment>;
   userCommentsArray : Array<Comment> = [];
+              
+   passwordMatchValidator(comp: UserDetailsComponent) : ValidatorFn {
+     
+    return (control: AbstractControl) : ValidationErrors => {
+      return comp.password != control.value ? { mismatch: true } : null;
+    }
+  }
 
-  constructor(public router: Router) { }
+  constructor(public router: Router,
+              private formBuilder: FormBuilder,
+              public hasher : HashPasswordService) { 
+                this.changeForm = this.formBuilder.group({
+                  password: ['', Validators.minLength(6)],
+                  password_repeat: ['', [Validators.minLength(6), this.passwordMatchValidator(this)]],
+                  name: [],
+                  surname: []
+                });
+              }
+  
+  get f() {return this.changeForm.controls;}
 
   ngOnInit() {
+    
+
     if (!localStorage.getItem("login")) {
-      this.isDirty = false;
       this.router.navigate(['/movies']);
     }
     this.login = localStorage.getItem("login");
@@ -56,6 +82,19 @@ export class UserDetailsComponent implements OnInit {
   }
 
   onSubmit() : void {
+
+  this.submitted = true;
+
+  if (this.changeForm.invalid) {
+      return;
+  } else {
+
+    this.updated = true;
+    setTimeout(() => {
+      console.log('working')
+      this.updated = false;
+    }, 3000);
+
     this.users.forEach(usr => {
       if (usr.login === this.login){
         if (usr.name != this.name)
@@ -63,7 +102,7 @@ export class UserDetailsComponent implements OnInit {
         if (usr.surname != this.surname)
           usr.surname = this.surname;
         if (this.password != undefined && this.password != null && this.password === this.password_repeat && this.password.length >= 6) {
-          usr.password = this.password;
+          usr.password = this.hasher.hashPassword(this.password);
         } 
         if (this.file) {
           usr.img = this.file;
@@ -71,8 +110,7 @@ export class UserDetailsComponent implements OnInit {
         localStorage.setItem("user", JSON.stringify(usr));
       }
     })
-    this.isDirty = false;
- 
+
     localStorage.setItem("Array", JSON.stringify(this.users));
 
     let commentsArray = JSON.parse(localStorage.getItem("commentsArray"));
@@ -86,6 +124,7 @@ export class UserDetailsComponent implements OnInit {
     });
 
     localStorage.setItem("commentsArray", JSON.stringify(commentsArray));
+  }
   }
 
   onFileChanged(event) {

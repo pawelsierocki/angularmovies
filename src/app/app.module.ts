@@ -40,7 +40,7 @@ import { UserDetailsComponent } from './user-details/user-details.component';
     RouterModule.forRoot(appRoutes),
     HttpClientModule,
     FormsModule,
-    ReactiveFormsModule,
+    ReactiveFormsModule
   ],
   providers: [
     LoaderService,
@@ -59,6 +59,12 @@ import { UserDetailsComponent } from './user-details/user-details.component';
 export class AppModule { }
 
 export function checkDirtyState(component: UserDetailsComponent) {
+  
+  for (let control in component.changeForm.controls){
+    if(component.changeForm.get(control).dirty)
+    component.isDirty = true;
+  }
+
   if(component.isDirty)
     return window.confirm('You have not saved your changes, do you want to cancel ?');
   else

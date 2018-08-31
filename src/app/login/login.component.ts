@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { User } from '../../shared/services/user';
+import { HashPasswordService } from '../../shared/services/hash-password.service'
 
 @Component({
   selector: 'app-login',
@@ -11,7 +12,7 @@ import { User } from '../../shared/services/user';
 export class LoginComponent implements OnInit {
 
   login : string;
-  password: string;
+  password: any;
   isLoggedIn : boolean = false;
   wrongData : boolean = false;
   users : Array<User> = [
@@ -21,7 +22,8 @@ export class LoginComponent implements OnInit {
     }
   ]
 
-  constructor(public router: Router) { }
+  constructor(public router: Router,
+              public hasher : HashPasswordService) { }
 
   ngOnInit() {
     if (JSON.parse(localStorage.getItem("Array")) != null)
@@ -47,7 +49,7 @@ export class LoginComponent implements OnInit {
     let match : boolean = false;
     let obj : any;
     this.users.forEach(element => {
-      if ((element.login === this.login) && (element.password === this.password)){
+      if ((element.login === this.login) && (element.password === this.hasher.hashPassword(this.password))){
         match = true;
         obj = element;
       }

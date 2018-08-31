@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { FormBuilder, Validators } from '@angular/forms';
 import { User } from '../../shared/services/user';
+import { HashPasswordService } from '../../shared/services/hash-password.service'
 
 @Component({
   selector: 'app-register',
@@ -12,14 +13,15 @@ export class RegisterComponent implements OnInit{
   
   registerForm: any;
   loginRegister : string;
-  passwordRegister : string;
+  passwordRegister : any;
   accountIsRegistered : boolean = false;
   submitted = false;
   loginTaken : boolean = false;
   users : Array<User> = [];
 
   constructor(public router : Router,
-              private formBuilder: FormBuilder) { }
+              private formBuilder: FormBuilder,
+              public hasher : HashPasswordService) { }
 
   get f() { return this.registerForm.controls; }
 
@@ -62,6 +64,7 @@ export class RegisterComponent implements OnInit{
     } else {
       let newUser = new User;
       
+      this.passwordRegister = this.hasher.hashPassword(this.passwordRegister);
       newUser = {
         login: this.loginRegister,
         password: this.passwordRegister,
