@@ -91,7 +91,6 @@ export class UserDetailsComponent implements OnInit {
 
     this.updated = true;
     setTimeout(() => {
-      console.log('working')
       this.updated = false;
     }, 3000);
 
@@ -124,7 +123,12 @@ export class UserDetailsComponent implements OnInit {
     });
 
     localStorage.setItem("commentsArray", JSON.stringify(commentsArray));
-    this.changeForm.reset();
+
+    for (let control in this.changeForm.controls){
+      if(this.changeForm.get(control).dirty)
+        this.changeForm.reset();    
+    }
+      
   }
   }
 

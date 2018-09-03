@@ -22,3 +22,10 @@
     cursor: pointer;
     color: crimson;
 }
+
+@media only screen and (max-width: 767px) {
+    .arrow-box {
+        top: 5px;
+        left: 5px;
+    }
+}
