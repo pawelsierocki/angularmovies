@@ -3,7 +3,6 @@ import { ActivatedRoute } from '@angular/router'
 import { GetDataService } from '../../shared/services/get-data.service'
 import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 import { Comment } from '../../shared/services/comment'
-import { User } from '../../shared/services/user';
 
 @Component({
   selector: 'app-movies-details',

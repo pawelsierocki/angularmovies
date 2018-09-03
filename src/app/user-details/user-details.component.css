@@ -38,12 +38,8 @@
 }
 
 .alertChanged {
-    position: absolute;
-    top: -50px;
-    left: 0 ;
     text-align: center;
     width: 100%;
-    z-index: 9999;
 }
 
 .data {

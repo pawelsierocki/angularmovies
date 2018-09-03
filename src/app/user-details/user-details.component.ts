@@ -124,6 +124,7 @@ export class UserDetailsComponent implements OnInit {
     });
 
     localStorage.setItem("commentsArray", JSON.stringify(commentsArray));
+    this.changeForm.reset();
   }
   }
 
