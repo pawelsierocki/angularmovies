@@ -21,7 +21,8 @@ export class MoviesDetailsComponent implements OnInit {
     commentText : '',
     id : '',
     language: '',
-    user : ''
+    user : '',
+    validComment : true
   }
 
   selectedComments : Array<Comment> = [];
@@ -85,6 +86,7 @@ export class MoviesDetailsComponent implements OnInit {
   
   addComment() : void {
     if (this.globals.commentText.replace(/\s/g, '').length) {
+      this.globals.validComment = true;
       let comment = {
         comment: this.globals.commentText, 
         film_id :this.globals.id, 
@@ -100,6 +102,7 @@ export class MoviesDetailsComponent implements OnInit {
       this.toastr.success('Comment successfully added !', 'Huraaaaaah !');
     } else {
       this.toastr.error("You need to type something first!","Ouuuuuuups")
+      this.globals.validComment = false;
     }
     
   }

@@ -152,3 +152,12 @@
 .add-comment {
     margin-bottom: 100px;
 }
+
+.is-invalid {
+    background-color: #f75c5c;
+    color: white;
+}
+
+.is-invalid::placeholder {
+    color: white;
+}

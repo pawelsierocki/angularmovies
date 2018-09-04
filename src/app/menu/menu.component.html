@@ -8,10 +8,6 @@
       [routerLink]="['/search']"
       routerLinkActive="active"
       [routerLinkActiveOptions]="{exact:true}">Search for movies</a></li>
-      <li *ngIf="loggedIn"><a 
-      [routerLink]="['/profile']" 
-      routerLinkActive="active"
-      [routerLinkActiveOptions]="{exact:true}">Account information</a></li>
+      <app-user-info></app-user-info>
   </ul>
-  <app-user-info></app-user-info>
 </nav>

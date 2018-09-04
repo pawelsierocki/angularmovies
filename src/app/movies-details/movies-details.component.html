@@ -17,8 +17,9 @@
             </iframe> 
 </div>
 
+
 <div class="add-comment container">
-    <textarea name="comment-area" id="comment-area" rows="5" maxlength="2000" placeholder="Type your comment here..." [(ngModel)]="globals.commentText"></textarea>
+    <textarea name="comment-area" id="comment-area" rows="5" maxlength="2000" placeholder="Type your comment here..." [(ngModel)]="globals.commentText" [ngClass]="{ 'is-invalid': !globals.validComment }"></textarea>
     <button class="btn btn-success btn-addComment" (click)="addComment()">Add comment</button>
 </div>
 <div class="comments-container">
@@ -35,4 +36,5 @@
             </div>
         </div>
     </div>
+    
 </div>

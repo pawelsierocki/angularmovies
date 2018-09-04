@@ -1,4 +1,17 @@
-<div class="info" *ngIf="login">
-    <div>Logged as: {{login}}</div>
-    <button id="logout" class="btn btn-danger" (click)="logout()">Logout</button>
+<div class="content" *ngIf="login">
+        <div class="btn-group">
+                <button type="button" class="btn btn-success dropdown-toggle btn-menu" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <img class="user-avatar" src="../../../assets/img/{{currentUser.img}}" alt="avatar">
+                    <em *ngIf="currentUser.name && currentUser.surname" class="em">{{currentUser.name}} {{currentUser.surname}}</em>
+                    <em *ngIf="!currentUser.name || !currentUser.surname" class="em">{{currentUser.login}}</em>
+                </button>
+            <div class="dropdown-menu">
+                <a class="dropdown-item"
+                [routerLink]="['/profile']" 
+                routerLinkActive="active"
+                [routerLinkActiveOptions]="{exact:true}">Edit profile</a>
+                <div class="dropdown-divider"></div>
+                <a id="logout" class="dropdown-item" (click)="logout()">Logout</a>
+            </div>
 </div>
+

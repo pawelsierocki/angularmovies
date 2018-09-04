@@ -1,4 +1,23 @@
+
+.user-avatar {
+    width: 25px;
+    height: 25px;
+    margin-right: 20px;
+}
+.btn-menu {
+    font-size: 15px;
+}
+
 #logout {
-    padding: 5px 15px;
-    margin-top: 10px;
+    color: red;
+    font-weight: bold;
+}
+
+#logout:hover {
+    cursor: pointer;
+}
+
+
+.em {
+    margin-right: 15px;
 }
