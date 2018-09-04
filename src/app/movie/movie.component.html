@@ -5,6 +5,7 @@
                 src="{{movie.poster_path != null ? path+movie.poster_path : '../../assets/img/default.png'}}">
       <div class="movie-title">
           <h2 class="title">{{movie.original_title}}</h2>
+          <app-likes [movie]="movie"></app-likes>
       </div>
     </div>
     <star-component [rating]='movie.vote_average'></star-component>

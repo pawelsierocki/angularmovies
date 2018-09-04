@@ -10,6 +10,10 @@
                 [routerLink]="['/profile']" 
                 routerLinkActive="active"
                 [routerLinkActiveOptions]="{exact:true}">Edit profile</a>
+                <a class="dropdown-item"
+                [routerLink]="['/favourite']" 
+                routerLinkActive="active"
+                [routerLinkActiveOptions]="{exact:true}">Favourite movies</a>
                 <div class="dropdown-divider"></div>
                 <a id="logout" class="dropdown-item" (click)="logout()">Logout</a>
             </div>

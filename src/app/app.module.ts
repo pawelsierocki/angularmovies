@@ -25,6 +25,8 @@ import { appRoutes } from '../shared/services/routes';
 import { GoBackComponent } from './go-back/go-back.component';
 import { RegisterComponent } from './register/register.component';
 import { UserDetailsComponent } from './user-details/user-details.component';
+import { LikesComponent } from './likes/likes.component';
+import { FavmoviesComponent } from './favmovies/favmovies.component';
 
 @NgModule({
   declarations: [
@@ -35,7 +37,7 @@ import { UserDetailsComponent } from './user-details/user-details.component';
     OverviewLengthDirective,
     StarComponent,
     LoginComponent, 
-    NotFoundComponent, MenuComponent, UserInfoComponent, LoaderComponent, MovieComponent, GoBackComponent, RegisterComponent, UserDetailsComponent
+    NotFoundComponent, MenuComponent, UserInfoComponent, LoaderComponent, MovieComponent, GoBackComponent, RegisterComponent, UserDetailsComponent, LikesComponent, FavmoviesComponent
   ],
   imports: [
     BrowserModule,

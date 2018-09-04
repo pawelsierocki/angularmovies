@@ -7,6 +7,7 @@ import { NotFoundComponent } from "../../app/not-found/not-found.component";
 import { RegisterComponent } from "../../app/register/register.component";
 import { Routes } from "@angular/router";
 import { UserDetailsComponent } from "../../app/user-details/user-details.component";
+import { FavmoviesComponent } from "../../app/favmovies/favmovies.component";
 
 export const appRoutes : Routes = [
             { path: 'movies', component: MoviesListComponent },
@@ -16,6 +17,7 @@ export const appRoutes : Routes = [
             { path: 'profile', 
             canDeactivate: ['canDeactivateChanges'],
             component: UserDetailsComponent,},
+            { path: 'favourite', component: FavmoviesComponent},
             { path: 'movies/:id/:lang', component: MoviesDetailsComponent },
             { path: 'login', component: LoginComponent},
             { path: 'register', component: RegisterComponent},

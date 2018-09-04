@@ -1,0 +1,16 @@
+.icon {
+    transition: all .7s;
+    font-size: 20px;
+}
+
+.icon:hover {
+    transform: scale(1.2);
+}
+
+.red {
+    color: red;
+}
+
+.black {
+    color: black;
+}
