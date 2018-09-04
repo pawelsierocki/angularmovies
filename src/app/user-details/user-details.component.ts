@@ -3,6 +3,7 @@ import { User } from '../../shared/services/user';
 import { Router } from '@angular/router';
 import { FormBuilder, Validators, ValidatorFn, AbstractControl, ValidationErrors } from '@angular/forms';
 import { HashPasswordService } from '../../shared/services/hash-password.service'
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-user-details',
@@ -13,7 +14,6 @@ import { HashPasswordService } from '../../shared/services/hash-password.service
 export class UserDetailsComponent implements OnInit {
 
   isDirty : boolean = false;
-  updated : boolean = false;
   submitted : boolean = false;
   changeForm: any;
   login: string;
@@ -37,7 +37,8 @@ export class UserDetailsComponent implements OnInit {
 
   constructor(public router: Router,
               private formBuilder: FormBuilder,
-              public hasher : HashPasswordService) { 
+              public hasher : HashPasswordService,
+              private toastr : ToastrService) { 
                 this.changeForm = this.formBuilder.group({
                   password: ['', Validators.minLength(6)],
                   password_repeat: ['', [Validators.minLength(6), this.passwordMatchValidator(this)]],
@@ -88,12 +89,7 @@ export class UserDetailsComponent implements OnInit {
   if (this.changeForm.invalid) {
       return;
   } else {
-
-    this.updated = true;
-    setTimeout(() => {
-      this.updated = false;
-    }, 3000);
-
+    
     this.users.forEach(usr => {
       if (usr.login === this.login){
         if (usr.name != this.name)
@@ -129,6 +125,7 @@ export class UserDetailsComponent implements OnInit {
         this.changeForm.reset();    
     }
       
+    this.toastr.success('Profile changes saved !', 'Huraaaaaah !');
   }
   }
 

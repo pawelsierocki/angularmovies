@@ -4,6 +4,8 @@ import { RouterModule } from '@angular/router'
 import { HttpClientModule } from '@angular/common/http'
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ToastrModule } from 'ngx-toastr';
 
 import { AppComponent } from './app.component';
 import { MoviesListComponent } from './movies-list/movies-list.component';
@@ -40,7 +42,9 @@ import { UserDetailsComponent } from './user-details/user-details.component';
     RouterModule.forRoot(appRoutes),
     HttpClientModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    BrowserAnimationsModule,
+    ToastrModule.forRoot()
   ],
   providers: [
     LoaderService,

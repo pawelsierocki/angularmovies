@@ -3,6 +3,7 @@ import { ActivatedRoute } from '@angular/router'
 import { GetDataService } from '../../shared/services/get-data.service'
 import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 import { Comment } from '../../shared/services/comment'
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-movies-details',
@@ -29,7 +30,8 @@ export class MoviesDetailsComponent implements OnInit {
 
   constructor(private route: ActivatedRoute,
               private getDataService: GetDataService,
-              public sanitizer: DomSanitizer) { }
+              public sanitizer: DomSanitizer,
+              private toastr: ToastrService) { }
 
   ngOnInit() {
     this.globals.user = JSON.parse(localStorage.getItem("user"));
@@ -95,8 +97,9 @@ export class MoviesDetailsComponent implements OnInit {
       
       this.globals.commentText = '';
       localStorage.setItem("commentsArray", JSON.stringify(this.allComments));
+      this.toastr.success('Comment successfully added !', 'Huraaaaaah !');
     } else {
-      alert('Type a comment first')
+      this.toastr.error("You need to type something first!","Ouuuuuuups")
     }
     
   }
