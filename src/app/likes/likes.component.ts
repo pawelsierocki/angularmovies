@@ -17,6 +17,7 @@ export class LikesComponent implements OnInit {
 
   ngOnInit() {
     this.currentUser = JSON.parse(localStorage.getItem("user"));
+    
       if (this.currentUser.favMovies != undefined){
         this.currentUser.favMovies.forEach(el => {
           if (el.id === this.movie.id) {

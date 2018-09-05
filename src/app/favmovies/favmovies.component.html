@@ -1,24 +1,5 @@
 <app-menu></app-menu>
-<div class="block row" *ngIf="favMovies">
-<div class="movieStyle" *ngFor="let movie of favMovies">
-    <div class="singleMovie">
-        <div class="movie-info">
-          <img class="image" 
-                    alt="{{movie.original_title}}"
-                    src="{{movie.poster_path != null ? path+movie.poster_path : '../../assets/img/default.png'}}">
-          <div class="movie-title">
-              <h2 class="title">{{movie.original_title}}</h2>
-              <app-likes [movie]="movie" (click)="delete()"></app-likes>
-          </div>
-        </div>
-        <star-component [rating]='movie.vote_average'></star-component>
-        <div class="movie-description">
-          {{movie.overview.length < 200 ? movie.overview : movie.overview.slice(0,200)+'...'}}
-        </div>
-        <div class="movie-btn">
-          <button class="btn btn-danger" [routerLink]="['/movies', movie.id, movie.original_language]">See more details</button>
-        </div>
-    </div>
-</div>
+<div class="block row">
+    <app-movie class="movieStyle" *ngFor="let movie of favMovies" [movie]="movie"></app-movie>
 </div>
 <div *ngIf="!favMovies || favMovies === undefined || !favMovies.length"><h3>No favourite movies in your list !</h3></div>

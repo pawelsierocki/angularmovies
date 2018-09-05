@@ -55,8 +55,7 @@ export class MoviesDetailsComponent implements OnInit {
     this.getDataService.getData(this.globals.movieURL).subscribe(
       movies => {
         console.log(this.globals.movieURL);
-        console.log(movies)
-        this.globals.movie = movies,
+        this.globals.movie = movies
         this.setMovie();
       },
       error => this.globals.errorMessage = <any>error

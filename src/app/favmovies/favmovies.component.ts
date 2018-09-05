@@ -12,6 +12,7 @@ export class FavmoviesComponent implements OnInit {
   path : string = `https://image.tmdb.org/t/p/w200`;
   favMovies : Array<any> = [];
   currentUser : User ;
+  ifDeleted : boolean = false;
 
   constructor(private router: Router) { }
 

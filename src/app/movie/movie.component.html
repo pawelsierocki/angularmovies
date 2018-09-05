@@ -5,10 +5,11 @@
                 src="{{movie.poster_path != null ? path+movie.poster_path : '../../assets/img/default.png'}}">
       <div class="movie-title">
           <h2 class="title">{{movie.original_title}}</h2>
-          <app-likes *ngIf="this.currentUser" [movie]="movie"></app-likes>
       </div>
+      <app-likes *ngIf="this.currentUser" [movie]="movie"></app-likes>
     </div>
     <star-component [rating]='movie.vote_average'></star-component>
+    
     <div class="movie-description">
       {{movie.overview.length < 200 ? movie.overview : movie.overview.slice(0,200)+'...'}}
     </div>
