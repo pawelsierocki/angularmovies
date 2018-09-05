@@ -102,6 +102,7 @@ export class UserDetailsComponent implements OnInit {
         if (this.file) {
           usr.img = this.file;
         }
+
         localStorage.setItem("user", JSON.stringify(usr));
       }
     })
@@ -110,6 +111,7 @@ export class UserDetailsComponent implements OnInit {
 
     let commentsArray = JSON.parse(localStorage.getItem("commentsArray"));
 
+    if(commentsArray)
     commentsArray.forEach(element => {
       this.users.forEach(user =>{
         if (element.user.login === user.login){

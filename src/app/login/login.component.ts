@@ -15,12 +15,7 @@ export class LoginComponent implements OnInit {
   password: any;
   isLoggedIn : boolean = false;
   wrongData : boolean = false;
-  users : Array<User> = [
-    {
-      login : "psierocki",
-      password : "test123"
-    }
-  ]
+  users : Array<User> = []
 
   constructor(public router: Router,
               public hasher : HashPasswordService) { }
@@ -53,7 +48,6 @@ export class LoginComponent implements OnInit {
         match = true;
         obj = element;
       }
-        
     });
 
    if (match) {

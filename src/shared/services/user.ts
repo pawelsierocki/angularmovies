@@ -4,4 +4,5 @@ export class User {
     name?: string;
     surname? : string;
     img?: string;
+    favMovies? : Array<any> = [];
 }

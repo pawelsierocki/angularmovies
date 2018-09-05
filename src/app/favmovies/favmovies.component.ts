@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { User } from '../../shared/services/user';
 
 @Component({
   selector: 'app-favmovies',
@@ -10,20 +11,23 @@ export class FavmoviesComponent implements OnInit {
 
   path : string = `https://image.tmdb.org/t/p/w200`;
   favMovies : Array<any> = [];
-  
+  currentUser : User ;
+
   constructor(private router: Router) { }
 
   ngOnInit() {
     if (!localStorage.getItem("login")) {
       this.router.navigate(['/movies']);
     }
-
-    if(localStorage.getItem("favMovies")) {
-      this.favMovies = JSON.parse(localStorage.getItem("favMovies"));
+  
+    if(localStorage.getItem("user")) {
+      this.currentUser = JSON.parse(localStorage.getItem("user"));
+      this.favMovies = this.currentUser.favMovies;
     }
   }
 
   delete() {
-    this.favMovies = JSON.parse(localStorage.getItem("favMovies"));
+    this.currentUser = JSON.parse(localStorage.getItem("user"));
+    this.favMovies = this.currentUser.favMovies;
   }
 }

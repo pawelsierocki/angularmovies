@@ -1,6 +1,10 @@
 .icon {
-    transition: all .7s;
+    transition: all 1s;
     font-size: 20px;
+}
+
+i:hover {
+    cursor: pointer;
 }
 
 .icon:hover {
@@ -13,4 +17,12 @@
 
 .black {
     color: black;
+}
+
+.like_it {
+    font-size: 11px;
+    color: red;
+    font-weight: normal;
+    letter-spacing: .3px;
+    margin-left: 3px;
 }

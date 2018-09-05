@@ -1,5 +1,5 @@
 <app-menu></app-menu>
-<div class="block row" *ngIf="favMovies.length">
+<div class="block row" *ngIf="favMovies">
 <div class="movieStyle" *ngFor="let movie of favMovies">
     <div class="singleMovie">
         <div class="movie-info">
@@ -21,4 +21,4 @@
     </div>
 </div>
 </div>
-<div *ngIf="!favMovies.length"><h3>No favourite movies in your list !</h3></div>
+<div *ngIf="!favMovies || favMovies === undefined || !favMovies.length"><h3>No favourite movies in your list !</h3></div>

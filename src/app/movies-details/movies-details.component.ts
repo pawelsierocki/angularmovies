@@ -42,7 +42,6 @@ export class MoviesDetailsComponent implements OnInit {
     
     if (localStorage.getItem("commentsArray")){
       this.allComments = JSON.parse(localStorage.getItem("commentsArray"));
-      console.log(this.allComments)
       this.allComments.forEach(comment => {
         if (comment.film_id === this.globals.id)
           this.selectedComments.push(comment);
